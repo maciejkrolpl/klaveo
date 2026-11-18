@@ -2,9 +2,10 @@
   --bg: #cdd3e0;
   --card: #e1e6f0;
   --text: #1c2333;
-  --muted: #566077;
+  --muted: #4b556b;
   --border: #aeb7cc;
-  --accent: #2b6cd9;
+  --accent: #1d4fb0;
+  --on-accent: #ffffff;
   --accent-soft: #c3d4f2;
   font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
   color: var(--text);
@@ -28,6 +29,7 @@
     --muted: #8b93a7;
     --border: #2b3142;
     --accent: #6fa0f5;
+    --on-accent: #1b1f2b;
     --accent-soft: #232c44;
   }
 }
@@ -38,6 +40,7 @@
   --muted: #8b93a7;
   --border: #2b3142;
   --accent: #6fa0f5;
+  --on-accent: #1b1f2b;
   --accent-soft: #232c44;
 }
 

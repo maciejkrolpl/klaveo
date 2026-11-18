@@ -9,11 +9,11 @@
 
 /* Accent follows the selected language: Belarusian red, Ukrainian blue, Latin neutral */
 .app[data-mode='be'] {
-  --accent: #c8313e;
+  --accent: #a31f2c;
   --accent-soft: #ecc3c9;
 }
 .app[data-mode='uk'] {
-  --accent: #2b6cd9;
+  --accent: #1d4fb0;
   --accent-soft: #c3d4f2;
 }
 .app[data-mode='latin'] {
@@ -67,7 +67,7 @@
 }
 .theme button[aria-pressed='true'] {
   background: var(--accent);
-  color: var(--card);
+  color: var(--on-accent);
 }
 
 header {
@@ -115,7 +115,7 @@ header p {
 .tab.active {
   background: var(--accent);
   border-color: var(--accent);
-  color: var(--card);
+  color: var(--on-accent);
 }
 
 .editor {
@@ -165,7 +165,7 @@ textarea:focus {
   border: 1px solid var(--accent);
   border-radius: 999px;
   background: var(--accent);
-  color: var(--card);
+  color: var(--on-accent);
   font: inherit;
   font-size: 0.9rem;
   cursor: pointer;
