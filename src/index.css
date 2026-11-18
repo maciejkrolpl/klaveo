@@ -1,0 +1,52 @@
+:root {
+  --bg: #cdd3e0;
+  --card: #e1e6f0;
+  --text: #1c2333;
+  --muted: #566077;
+  --border: #aeb7cc;
+  --accent: #2b6cd9;
+  --accent-soft: #c3d4f2;
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  color-scheme: light dark;
+}
+
+/* Theme: auto follows the system; data-theme forces day or night. */
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+:root[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #12151d;
+    --card: #1b1f2b;
+    --text: #e8ebf3;
+    --muted: #8b93a7;
+    --border: #2b3142;
+    --accent: #6fa0f5;
+    --accent-soft: #232c44;
+  }
+}
+:root[data-theme='dark'] {
+  --bg: #12151d;
+  --card: #1b1f2b;
+  --text: #e8ebf3;
+  --muted: #8b93a7;
+  --border: #2b3142;
+  --accent: #6fa0f5;
+  --accent-soft: #232c44;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+}

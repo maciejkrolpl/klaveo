@@ -1,0 +1,227 @@
+.app {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 40px 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Accent follows the selected language: Belarusian red, Ukrainian blue, Latin neutral */
+.app[data-mode='be'] {
+  --accent: #c8313e;
+  --accent-soft: #ecc3c9;
+}
+.app[data-mode='uk'] {
+  --accent: #2b6cd9;
+  --accent-soft: #c3d4f2;
+}
+.app[data-mode='latin'] {
+  --accent: #4a5468;
+  --accent-soft: #c6cddc;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .app[data-mode='be'] {
+    --accent: #ef6b76;
+    --accent-soft: #3a2327;
+  }
+  :root:not([data-theme='light']) .app[data-mode='uk'] {
+    --accent: #6fa0f5;
+    --accent-soft: #232c44;
+  }
+  :root:not([data-theme='light']) .app[data-mode='latin'] {
+    --accent: #aab3c5;
+    --accent-soft: #262b38;
+  }
+}
+:root[data-theme='dark'] .app[data-mode='be'] {
+  --accent: #ef6b76;
+  --accent-soft: #3a2327;
+}
+:root[data-theme='dark'] .app[data-mode='uk'] {
+  --accent: #6fa0f5;
+  --accent-soft: #232c44;
+}
+:root[data-theme='dark'] .app[data-mode='latin'] {
+  --accent: #aab3c5;
+  --accent-soft: #262b38;
+}
+
+.theme {
+  align-self: flex-end;
+  display: flex;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--card);
+}
+.theme button {
+  padding: 4px 12px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.theme button[aria-pressed='true'] {
+  background: var(--accent);
+  color: var(--card);
+}
+
+header {
+  text-align: center;
+}
+header h1 {
+  margin: 0;
+  font-size: 2.6rem;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+}
+header p {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.flag {
+  flex: none;
+  border-radius: 2px;
+  /* thin outline so the white stripes stay visible on any background */
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.25);
+}
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.tab:hover {
+  border-color: var(--accent);
+}
+.tab.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--card);
+}
+
+.editor {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 320px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card);
+  color: var(--text);
+  font: inherit;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  resize: vertical;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 0.04);
+}
+textarea:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: -1px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.check {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: auto;
+  font-size: 0.9rem;
+  color: var(--muted);
+  cursor: pointer;
+}
+.check input {
+  accent-color: var(--accent);
+}
+.btn {
+  padding: 6px 16px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--card);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.btn.ghost {
+  background: transparent;
+  color: var(--accent);
+}
+.btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.cheatsheet {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card);
+}
+.cheatsheet summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+.cheatsheet ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 8px 16px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.cheatsheet li:last-child {
+  grid-column: 1 / -1;
+  color: var(--muted);
+}
+.cheatsheet b {
+  display: inline-block;
+  min-width: 1.9em;
+  padding: 1px 8px;
+  margin-right: 4px;
+  border-radius: 8px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 700;
+  text-align: center;
+}
+kbd {
+  padding: 1px 6px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  font-family: ui-monospace, Consolas, monospace;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
