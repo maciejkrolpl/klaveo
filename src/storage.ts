@@ -5,6 +5,7 @@ export const THEME_KEY = 'klaveo.theme'
 export const MODE_KEY = 'klaveo.mode'
 export const SAVE_TEXT_KEY = 'klaveo.saveText'
 export const TEXT_KEY = 'klaveo.text'
+export const ANALYTICS_KEY = 'klaveo.analytics' // 'granted' | 'denied': the analytics consent choice
 
 /** Read a stored string; fall back if it is missing, not allowed, or storage is blocked. */
 export function load<T extends string>(key: string, allowed: readonly T[], fallback: T): T {

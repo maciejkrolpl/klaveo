@@ -22,9 +22,15 @@ type.
 
 ## Privacy
 
-Everything happens in your browser, and nothing is sent anywhere. The app remembers your theme and
-language on your device. It remembers your text only if you tick "Save text on reload", and
-unticking the box deletes it.
+The conversion happens in your browser, and the text you type is never sent anywhere. The app
+remembers your theme and language on your device. It remembers your text only if you tick "Save text
+on reload", and unticking the box deletes it.
+
+Anonymous usage statistics (page views, and which language and theme you pick) are collected with
+Google Analytics (through Firebase) only if you click Accept in the consent banner. Nothing is loaded
+before that. The choice is stored on your device as `klaveo.analytics` and can be changed from the
+footer ("Analytics settings"). To enable it in your own copy, fill in the Firebase web config in
+`src/analytics.ts`.
 
 ## Run it
 

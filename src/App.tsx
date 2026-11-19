@@ -1,9 +1,12 @@
+import { analyticsAvailable, track } from './analytics'
+import { ConsentBanner } from './components/ConsentBanner'
 import { Editor } from './components/Editor'
 import { Footer } from './components/Footer'
 import { LanguageTabs } from './components/LanguageTabs'
 import { LetterGuide } from './components/LetterGuide'
 import { ThemeSwitch } from './components/ThemeSwitch'
-import { MODE_IDS, MODES, type Mode } from './config'
+import { MODE_IDS, MODES, type Mode, type Theme } from './config'
+import { useAnalyticsConsent } from './hooks/useAnalyticsConsent'
 import { usePersistedChoice } from './hooks/usePersistedChoice'
 import { useLiveInput } from './hooks/useLiveInput'
 import { useSavedText } from './hooks/useSavedText'
@@ -16,9 +19,16 @@ export default function App() {
   const [theme, setTheme] = useTheme()
   const { text, setText, saveText, setSaveText } = useSavedText()
   const input = useLiveInput(text, setText, mode)
+  const consent = useAnalyticsConsent()
+
+  function changeTheme(next: Theme) {
+    setTheme(next)
+    track('theme_change', { theme: next })
+  }
 
   function changeMode(next: Mode) {
     setMode(next)
+    track('mode_change', { mode: next })
     input.resetPending()
     input.focus()
   }
@@ -31,7 +41,7 @@ export default function App() {
 
   return (
     <main className="app" data-mode={mode}>
-      <ThemeSwitch theme={theme} onChange={setTheme} />
+      <ThemeSwitch theme={theme} onChange={changeTheme} />
 
       <header>
         <h1>Klaveo</h1>
@@ -51,7 +61,11 @@ export default function App() {
 
       {mode !== 'latin' && <LetterGuide script={mode} />}
 
-      <Footer />
+      <Footer onAnalyticsSettings={consent.reopen} />
+
+      {analyticsAvailable && consent.needsChoice && (
+        <ConsentBanner onAccept={consent.accept} onDecline={consent.decline} />
+      )}
     </main>
   )
 }

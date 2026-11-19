@@ -6,9 +6,12 @@ live in a single textarea. A third "Latin" mode does no conversion. Deployed on 
 
 ## Scope and rules
 - **Desktop only.** Mobile layout and phone keyboards are out of scope; don't spend effort on them.
-- **Privacy:** no backend, no analytics, no network calls with user data. Anything stored goes through
-  `src/storage.ts` (localStorage only). Text is stored only while "Save text on reload" is ticked.
-  If you add or change a stored key, update the footer note and the README.
+- **Privacy:** no backend, no network calls with user data. The one exception is consent-gated Google
+  Analytics (`src/analytics.ts`, Firebase SDK): nothing loads before the visitor clicks Accept, and only
+  page views and mode/theme choices are sent, never typed text. Don't add events that carry user
+  content. Anything stored goes through `src/storage.ts` (localStorage only). Text is stored only while
+  "Save text on reload" is ticked. If you add or change a stored key, or what analytics collects,
+  update the footer note and the README.
 - No router, no login, no UI library, no Tailwind. Plain CSS in `src/App.css` and `src/index.css`.
 - Keep it simple and pretty; don't add features that weren't asked for.
 
@@ -23,6 +26,8 @@ live in a single textarea. A third "Latin" mode does no conversion. Deployed on 
   these tables (multi-letter outputs like дз, дж, йо are hidden from it).
 - `src/hooks/useLiveInput.ts` – live conversion in the textarea (caret and pending-letter handling).
   Fragile: after touching it, check typing, mid-text edits, paste and backspace in a browser.
+- `src/analytics.ts` – Firebase config + consent-gated Google Analytics (`track()`); `useAnalyticsConsent`
+  and `ConsentBanner` drive the consent choice.
 - `src/storage.ts` – localStorage keys. `index.html` also reads `klaveo.theme` before first paint;
   keep the two in sync.
 - `src/components/`, `src/hooks/`, `src/config.ts` – UI pieces, state hooks, tabs and theme lists.
