@@ -9,6 +9,7 @@ import { MODE_IDS, MODES, type Mode, type Theme } from './config'
 import { useAnalyticsConsent } from './hooks/useAnalyticsConsent'
 import { usePersistedChoice } from './hooks/usePersistedChoice'
 import { useLiveInput } from './hooks/useLiveInput'
+import { useModeShortcut } from './hooks/useModeShortcut'
 import { useSavedText } from './hooks/useSavedText'
 import { useTheme } from './hooks/useTheme'
 import { MODE_KEY } from './storage'
@@ -32,6 +33,8 @@ export default function App() {
     input.resetPending()
     input.focus()
   }
+
+  useModeShortcut(mode, changeMode)
 
   function clear() {
     setText('')

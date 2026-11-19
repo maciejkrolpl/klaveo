@@ -29,6 +29,7 @@ live in a single textarea. A third "Latin" mode does no conversion. Deployed on 
   these tables (multi-letter outputs like дз, дж, йо are hidden from it).
 - `src/hooks/useLiveInput.ts` – live conversion in the textarea (caret and pending-letter handling).
   Fragile: after touching it, check typing, mid-text edits, paste and backspace in a browser.
+- `src/hooks/useModeShortcut.ts` – the Esc key cycles be → uk → latin (order of `MODES` in `config.ts`).
 - `src/analytics.ts` – Firebase config + consent-gated Google Analytics (`track()`); `useAnalyticsConsent`
   and `ConsentBanner` drive the consent choice.
 - `src/storage.ts` – localStorage keys. `index.html` also reads `klaveo.theme` before first paint;

@@ -8,7 +8,13 @@ interface Props {
 
 export function LanguageTabs({ mode, onChange }: Props) {
   return (
-    <div className="tabs" role="tablist" aria-label="Language">
+    <div
+      className="tabs"
+      role="tablist"
+      aria-label="Language"
+      aria-keyshortcuts="Escape"
+      title="Press Esc to switch language"
+    >
       {MODES.map((m) => (
         <button
           key={m.id}

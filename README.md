@@ -18,6 +18,7 @@ type.
 
 - Letters combine as you type: `s` gives с, then adding `h` makes it ш.
 - Type `|` to keep two letters apart: `z|h` gives зг instead of ж.
+- Press `Esc` to switch language: Беларуская → Українська → Latin → back to the start.
 - Use `'` for ь and `` ` `` for the apostrophe ’.
 
 ## Privacy
