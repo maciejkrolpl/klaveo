@@ -214,6 +214,10 @@ textarea:focus {
   font-weight: 700;
   text-align: center;
 }
+.cheatsheet li.active b {
+  background: var(--accent);
+  color: var(--on-accent);
+}
 kbd {
   padding: 1px 6px;
   border: 1px solid var(--border);

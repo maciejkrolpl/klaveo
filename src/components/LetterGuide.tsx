@@ -1,12 +1,18 @@
 import { letterGuide, type Script } from '../transliterate';
 
-export function LetterGuide({ script }: { script: Script }) {
+interface Props {
+  script: Script;
+  /** Lower-case letter just typed; its row is highlighted. */
+  active: string | null;
+}
+
+export function LetterGuide({ script, active }: Props) {
   return (
     <details className="cheatsheet">
       <summary>Letter guide</summary>
       <ul>
         {letterGuide(script).map(({ cyrillic, keys }) => (
-          <li key={cyrillic}>
+          <li key={cyrillic} className={cyrillic === active ? 'active' : undefined}>
             <b>{cyrillic}</b>: {keys.join(', ')}
           </li>
         ))}

@@ -13,6 +13,7 @@ import { useModeShortcut } from './hooks/useModeShortcut';
 import { useSavedText } from './hooks/useSavedText';
 import { useTheme } from './hooks/useTheme';
 import { MODE_KEY } from './storage';
+import { transliterate } from './transliterate';
 import './App.css';
 
 export default function App() {
@@ -35,6 +36,15 @@ export default function App() {
   }
 
   useModeShortcut(mode, changeMode);
+
+  // Converts Latin text that is already in the box (e.g. typed in Latin mode). Cyrillic stays as is.
+  const converted = mode === 'latin' ? text : transliterate(text, mode);
+
+  function convert() {
+    setText(converted);
+    input.resetPending();
+    input.focus();
+  }
 
   function clear() {
     setText('');
@@ -60,9 +70,11 @@ export default function App() {
         saveText={saveText}
         onSaveTextChange={setSaveText}
         onClear={clear}
+        onConvert={convert}
+        canConvert={converted !== text}
       />
 
-      {mode !== 'latin' && <LetterGuide script={mode} />}
+      {mode !== 'latin' && <LetterGuide script={mode} active={input.lastLetter} />}
 
       <Footer onAnalyticsSettings={consent.reopen} />
 

@@ -10,9 +10,10 @@ type.
 
 - Type in one text box and watch the letters change to Cyrillic instantly
 - Switch between Беларуская, Українська and Latin (no conversion)
-- Check the Letter guide to see which keys give which letters
+- Check the Letter guide to see which keys give which letters (the row of the letter you just typed lights up)
+- Press Convert to turn Latin text already in the box (for example typed in Latin mode) into Cyrillic
 - Choose a Day, Night or Auto colour theme
-- Copy your text with one click
+- Copy your text with one click, or press `Ctrl+Enter` (`Cmd+Enter` on Mac)
 
 ## Tips
 

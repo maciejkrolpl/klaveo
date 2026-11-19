@@ -1,6 +1,7 @@
 import {
   useLayoutEffect,
   useRef,
+  useState,
   type ChangeEvent,
   type RefObject,
   type SyntheticEvent,
@@ -23,6 +24,7 @@ export function useLiveInput(text: string, setText: (text: string) => void, mode
   const areaRef = useRef<HTMLTextAreaElement>(null);
   const pendingRef = useRef(''); // Latin letters at the end that may still combine
   const caretRef = useRef<number | null>(null);
+  const [lastLetter, setLastLetter] = useState<string | null>(null); // last Cyrillic letter typed
 
   // Controlled textareas jump the caret to the end when we rewrite their value; put it back.
   useLayoutEffect(() => {
@@ -60,6 +62,7 @@ export function useLiveInput(text: string, setText: (text: string) => void, mode
 
     pendingRef.current = rest === '' ? state.pending : '';
     caretRef.current = state.text.length;
+    setLastLetter(inserted ? state.text.slice(-1).toLowerCase() : null);
     setText(state.text + rest);
   }
 
@@ -75,9 +78,12 @@ export function useLiveInput(text: string, setText: (text: string) => void, mode
 
   return {
     bindings,
+    /** The Cyrillic letter produced by the latest keystroke (lower case), for the Letter guide. */
+    lastLetter,
     /** Forget half-typed letters, e.g. after switching language or clearing. */
     resetPending: () => {
       pendingRef.current = '';
+      setLastLetter(null);
     },
     focus: () => areaRef.current?.focus(),
   };
