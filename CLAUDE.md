@@ -1,8 +1,8 @@
 # Klaveo (klaveo)
 
 One-page web app: the user types Latin letters and they turn into Belarusian or Ukrainian Cyrillic
-live in a single textarea. A third "Latin" mode does no conversion. Deployed on Netlify
-(https://klaveo-app.netlify.app/), repo on GitHub (`maciejkrolpl/klaveo`, branch `main`).
+live in a single textarea. A third "Latin" mode does no conversion. Deployed on Firebase Hosting
+(https://getklaveo.web.app/, via GitHub Actions on push to `main`), repo on GitHub (`maciejkrolpl/klaveo`, branch `main`).
 
 ## Scope and rules
 - **Desktop only.** Mobile layout and phone keyboards are out of scope; don't spend effort on them.
