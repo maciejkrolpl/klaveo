@@ -107,7 +107,9 @@ header p {
   color: var(--text);
   font: inherit;
   cursor: pointer;
-  transition: background 0.15s, border-color 0.15s;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
 }
 .tab:hover {
   border-color: var(--accent);

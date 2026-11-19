@@ -5,14 +5,14 @@ import type { Analytics } from 'firebase/analytics'
 // Firebase console > Project settings > Your apps > Web app > SDK setup and configuration.
 // These values are public by design (they ship in every Firebase web app).
 const firebaseConfig = {
-  apiKey: "AIzaSyAmc4TWGAUE_rjGqTwB48AMzI034boUEXc",
-  authDomain: "getklaveo.firebaseapp.com",
-  projectId: "getklaveo",
-  storageBucket: "getklaveo.firebasestorage.app",
-  messagingSenderId: "1000141068255",
-  appId: "1:1000141068255:web:f65be715daf2707248d66a",
-  measurementId: "G-VVR7NZGTEL"
-};
+  apiKey: 'AIzaSyAmc4TWGAUE_rjGqTwB48AMzI034boUEXc',
+  authDomain: 'getklaveo.firebaseapp.com',
+  projectId: 'getklaveo',
+  storageBucket: 'getklaveo.firebasestorage.app',
+  messagingSenderId: '1000141068255',
+  appId: '1:1000141068255:web:f65be715daf2707248d66a',
+  measurementId: 'G-VVR7NZGTEL',
+}
 
 // Only the live site reports to this property, so local dev, clones and forks never do.
 // (A fork that wants its own analytics: replace the config above and these hosts.)
@@ -32,7 +32,9 @@ async function start(): Promise<Started | null> {
       import('firebase/app'),
       import('firebase/analytics'),
     ])
-    if (!(await sdk.isSupported())) return null
+    if (!(await sdk.isSupported())) {
+      return null
+    }
     const analytics = sdk.initializeAnalytics(initializeApp(firebaseConfig), {
       config: { allow_google_signals: false, allow_ad_personalization_signals: false },
     })
@@ -44,8 +46,12 @@ async function start(): Promise<Started | null> {
 
 /** Turn collection on (loading the SDK the first time) or off. */
 export function setAnalyticsEnabled(on: boolean) {
-  if (!analyticsAvailable) return
-  if (on) started ??= start()
+  if (!analyticsAvailable) {
+    return
+  }
+  if (on) {
+    started ??= start()
+  }
   started?.then((s) => s?.sdk.setAnalyticsCollectionEnabled(s.analytics, on))
 }
 

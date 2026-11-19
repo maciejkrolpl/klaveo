@@ -13,8 +13,11 @@ export function useSavedText() {
   // Unticking the box also deletes any text stored earlier.
   useEffect(() => {
     save(SAVE_TEXT_KEY, saveText ? '1' : '0')
-    if (saveText) save(TEXT_KEY, text)
-    else remove(TEXT_KEY)
+    if (saveText) {
+      save(TEXT_KEY, text)
+    } else {
+      remove(TEXT_KEY)
+    }
   }, [saveText, text])
 
   return { text, setText, saveText, setSaveText }

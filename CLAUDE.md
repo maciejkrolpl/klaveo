@@ -18,7 +18,10 @@ live in a single textarea. A third "Latin" mode does no conversion. Deployed on 
 ## Commands
 - `npm run dev` – dev server (http://localhost:5173)
 - `npm run build` – type-check + production build (run after changes)
-- `npm run lint` – oxlint
+- `npm run lint` – oxlint (`curly` rule: always braces on if/else/for/while; `npm run lint -- --fix` adds them)
+- `npm run format` – oxfmt on `src/` (config in `.oxfmtrc.json`); `npm run format:check` to verify.
+  Run lint `--fix` first, then format. The letter tables in `transliterate.ts` are `// oxfmt-ignore`d
+  to keep their hand-grouped layout.
 
 ## Code map
 - `src/transliterate.ts` – mapping tables and the typing engine. **All mapping changes go here.**

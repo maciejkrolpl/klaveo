@@ -9,8 +9,11 @@ export function useTheme() {
   // "auto" removes the override so the page follows the system setting.
   useEffect(() => {
     const root = document.documentElement
-    if (theme === 'auto') delete root.dataset.theme
-    else root.dataset.theme = theme
+    if (theme === 'auto') {
+      delete root.dataset.theme
+    } else {
+      root.dataset.theme = theme
+    }
   }, [theme])
 
   return [theme, setTheme] as const

@@ -3,6 +3,8 @@ export type Script = 'uk' | 'be'
 type Rule = readonly [latin: string, cyrillic: string]
 
 // Longest match wins, so "szcz" is tried before "sz", which is tried before "s".
+// Hand-grouped layout: kept as is.
+// oxfmt-ignore
 const COMMON: Rule[] = [
   ['a', 'а'], ['b', 'б'], ['c', 'ц'], ['d', 'д'], ['f', 'ф'], ['j', 'й'],
   ['k', 'к'], ['l', 'л'], ['m', 'м'], ['n', 'н'], ['o', 'о'], ['p', 'п'],
@@ -17,6 +19,7 @@ const COMMON: Rule[] = [
   ["'", 'ь'], ['`', '’'],
 ]
 
+// oxfmt-ignore
 export const RULES: Record<Script, Rule[]> = {
   uk: [
     ...COMMON,
@@ -45,7 +48,9 @@ const ALPHABETS: Record<Script, string> = {
 export function letterGuide(script: Script): { cyrillic: string; keys: string[] }[] {
   const groups = new Map<string, string[]>()
   for (const [latin, cyr] of RULES[script]) {
-    if (cyr.length !== 1) continue
+    if (cyr.length !== 1) {
+      continue
+    }
     groups.set(cyr, [...(groups.get(cyr) ?? []), latin])
   }
   const order = (c: string) => {
@@ -69,9 +74,15 @@ const tables = Object.fromEntries(
 ) as Record<Script, Map<string, string>>
 
 function matchCase(source: string, out: string): string {
-  if (source === source.toLowerCase()) return out // not a cased letter
-  if (source.length > 1 && source === source.toUpperCase()) return out.toUpperCase()
-  if (source[0] !== source[0].toLowerCase()) return out[0].toUpperCase() + out.slice(1)
+  if (source === source.toLowerCase()) {
+    return out // not a cased letter
+  }
+  if (source.length > 1 && source === source.toUpperCase()) {
+    return out.toUpperCase()
+  }
+  if (source[0] !== source[0].toLowerCase()) {
+    return out[0].toUpperCase() + out.slice(1)
+  }
   return out
 }
 
@@ -94,7 +105,9 @@ function tokenize(text: string, script: Script): Token[] {
     }
     let len = Math.min(MAX_LEN, text.length - i)
     for (; len >= 1; len--) {
-      if (table.has(lower.slice(i, i + len))) break
+      if (table.has(lower.slice(i, i + len))) {
+        break
+      }
     }
     if (len >= 1) {
       const src = text.slice(i, i + len)
@@ -109,7 +122,9 @@ function tokenize(text: string, script: Script): Token[] {
 }
 
 export function transliterate(text: string, script: Script): string {
-  return tokenize(text, script).map((t) => t.out).join('')
+  return tokenize(text, script)
+    .map((t) => t.out)
+    .join('')
 }
 
 /** True if `src` could still grow into a longer rule (e.g. "s" -> "sz" -> "szcz"). */
@@ -142,7 +157,10 @@ export function typeChar(state: TypingState, ch: string, script: Script): Typing
 
   let nextPending = ''
   for (let k = 0; k < tokens.length; k++) {
-    const candidate = tokens.slice(k).map((t) => t.src).join('')
+    const candidate = tokens
+      .slice(k)
+      .map((t) => t.src)
+      .join('')
     if (canExtend(candidate, script)) {
       nextPending = candidate
       break

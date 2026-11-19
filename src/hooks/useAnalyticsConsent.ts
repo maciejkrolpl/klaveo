@@ -11,8 +11,11 @@ export function useAnalyticsConsent() {
 
   useEffect(() => {
     setAnalyticsEnabled(consent === 'granted')
-    if (consent === 'unset') remove(ANALYTICS_KEY)
-    else save(ANALYTICS_KEY, consent)
+    if (consent === 'unset') {
+      remove(ANALYTICS_KEY)
+    } else {
+      save(ANALYTICS_KEY, consent)
+    }
   }, [consent])
 
   return {

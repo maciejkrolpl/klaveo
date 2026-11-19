@@ -45,14 +45,18 @@ export function useLiveInput(text: string, setText: (text: string) => void, mode
     const newHead = next.slice(0, caret)
 
     let p = 0
-    while (p < oldHead.length && p < newHead.length && oldHead[p] === newHead[p]) p++
+    while (p < oldHead.length && p < newHead.length && oldHead[p] === newHead[p]) {
+      p++
+    }
     const removed = oldHead.slice(p)
     const inserted = newHead.slice(p)
 
     // Letters can only combine when we append at the very end without replacing anything.
     const appending = rest === '' && removed === '' && p === text.length
     let state = { text: newHead.slice(0, p), pending: appending ? pendingRef.current : '' }
-    for (const ch of inserted) state = typeChar(state, ch, mode)
+    for (const ch of inserted) {
+      state = typeChar(state, ch, mode)
+    }
 
     pendingRef.current = rest === '' ? state.pending : ''
     caretRef.current = state.text.length

@@ -2,7 +2,9 @@ import type { Mode } from '../config'
 
 // Drawn as SVG because flag emoji don't render on Windows.
 export function Flag({ mode }: { mode: Mode }) {
-  if (mode === 'latin') return null
+  if (mode === 'latin') {
+    return null
+  }
   const stripes =
     mode === 'be'
       ? ['#ffffff', '#cf101a', '#ffffff'] // white-red-white

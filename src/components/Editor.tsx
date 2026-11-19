@@ -11,7 +11,14 @@ interface Props {
   onClear: () => void
 }
 
-export function Editor({ mode, placeholder, textarea, saveText, onSaveTextChange, onClear }: Props) {
+export function Editor({
+  mode,
+  placeholder,
+  textarea,
+  saveText,
+  onSaveTextChange,
+  onClear,
+}: Props) {
   const [copied, setCopied] = useState(false)
   const text = textarea.value
 
