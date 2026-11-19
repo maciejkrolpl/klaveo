@@ -1,45 +1,45 @@
-import { analyticsAvailable, track } from './analytics'
-import { ConsentBanner } from './components/ConsentBanner'
-import { Editor } from './components/Editor'
-import { Footer } from './components/Footer'
-import { LanguageTabs } from './components/LanguageTabs'
-import { LetterGuide } from './components/LetterGuide'
-import { ThemeSwitch } from './components/ThemeSwitch'
-import { MODE_IDS, MODES, type Mode, type Theme } from './config'
-import { useAnalyticsConsent } from './hooks/useAnalyticsConsent'
-import { usePersistedChoice } from './hooks/usePersistedChoice'
-import { useLiveInput } from './hooks/useLiveInput'
-import { useModeShortcut } from './hooks/useModeShortcut'
-import { useSavedText } from './hooks/useSavedText'
-import { useTheme } from './hooks/useTheme'
-import { MODE_KEY } from './storage'
-import './App.css'
+import { analyticsAvailable, track } from './analytics';
+import { ConsentBanner } from './components/ConsentBanner';
+import { Editor } from './components/Editor';
+import { Footer } from './components/Footer';
+import { LanguageTabs } from './components/LanguageTabs';
+import { LetterGuide } from './components/LetterGuide';
+import { ThemeSwitch } from './components/ThemeSwitch';
+import { MODE_IDS, MODES, type Mode, type Theme } from './config';
+import { useAnalyticsConsent } from './hooks/useAnalyticsConsent';
+import { usePersistedChoice } from './hooks/usePersistedChoice';
+import { useLiveInput } from './hooks/useLiveInput';
+import { useModeShortcut } from './hooks/useModeShortcut';
+import { useSavedText } from './hooks/useSavedText';
+import { useTheme } from './hooks/useTheme';
+import { MODE_KEY } from './storage';
+import './App.css';
 
 export default function App() {
-  const [mode, setMode] = usePersistedChoice<Mode>(MODE_KEY, MODE_IDS, 'be')
-  const [theme, setTheme] = useTheme()
-  const { text, setText, saveText, setSaveText } = useSavedText()
-  const input = useLiveInput(text, setText, mode)
-  const consent = useAnalyticsConsent()
+  const [mode, setMode] = usePersistedChoice<Mode>(MODE_KEY, MODE_IDS, 'be');
+  const [theme, setTheme] = useTheme();
+  const { text, setText, saveText, setSaveText } = useSavedText();
+  const input = useLiveInput(text, setText, mode);
+  const consent = useAnalyticsConsent();
 
   function changeTheme(next: Theme) {
-    setTheme(next)
-    track('theme_change', { theme: next })
+    setTheme(next);
+    track('theme_change', { theme: next });
   }
 
   function changeMode(next: Mode) {
-    setMode(next)
-    track('mode_change', { mode: next })
-    input.resetPending()
-    input.focus()
+    setMode(next);
+    track('mode_change', { mode: next });
+    input.resetPending();
+    input.focus();
   }
 
-  useModeShortcut(mode, changeMode)
+  useModeShortcut(mode, changeMode);
 
   function clear() {
-    setText('')
-    input.resetPending()
-    input.focus()
+    setText('');
+    input.resetPending();
+    input.focus();
   }
 
   return (
@@ -70,5 +70,5 @@ export default function App() {
         <ConsentBanner onAccept={consent.accept} onDecline={consent.decline} />
       )}
     </main>
-  )
+  );
 }

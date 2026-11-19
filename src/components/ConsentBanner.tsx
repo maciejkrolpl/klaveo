@@ -1,6 +1,6 @@
 interface Props {
-  onAccept: () => void
-  onDecline: () => void
+  onAccept: () => void;
+  onDecline: () => void;
 }
 
 export function ConsentBanner({ onAccept, onDecline }: Props) {
@@ -19,5 +19,5 @@ export function ConsentBanner({ onAccept, onDecline }: Props) {
         </button>
       </div>
     </section>
-  )
+  );
 }

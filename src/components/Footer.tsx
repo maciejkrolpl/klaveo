@@ -1,7 +1,7 @@
-import { analyticsAvailable } from '../analytics'
+import { analyticsAvailable } from '../analytics';
 
 interface Props {
-  onAnalyticsSettings: () => void
+  onAnalyticsSettings: () => void;
 }
 
 export function Footer({ onAnalyticsSettings }: Props) {
@@ -19,5 +19,5 @@ export function Footer({ onAnalyticsSettings }: Props) {
         </>
       )}
     </footer>
-  )
+  );
 }

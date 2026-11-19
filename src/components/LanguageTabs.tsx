@@ -1,9 +1,9 @@
-import { MODES, type Mode } from '../config'
-import { Flag } from './Flag'
+import { MODES, type Mode } from '../config';
+import { Flag } from './Flag';
 
 interface Props {
-  mode: Mode
-  onChange: (mode: Mode) => void
+  mode: Mode;
+  onChange: (mode: Mode) => void;
 }
 
 export function LanguageTabs({ mode, onChange }: Props) {
@@ -28,5 +28,5 @@ export function LanguageTabs({ mode, onChange }: Props) {
         </button>
       ))}
     </div>
-  )
+  );
 }

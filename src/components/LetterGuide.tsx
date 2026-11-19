@@ -1,4 +1,4 @@
-import { letterGuide, type Script } from '../transliterate'
+import { letterGuide, type Script } from '../transliterate';
 
 export function LetterGuide({ script }: { script: Script }) {
   return (
@@ -15,5 +15,5 @@ export function LetterGuide({ script }: { script: Script }) {
         </li>
       </ul>
     </details>
-  )
+  );
 }

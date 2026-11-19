@@ -1,14 +1,14 @@
-import { useState } from 'react'
-import type { Mode } from '../config'
-import type { TextareaBindings } from '../hooks/useLiveInput'
+import { useState } from 'react';
+import type { Mode } from '../config';
+import type { TextareaBindings } from '../hooks/useLiveInput';
 
 interface Props {
-  mode: Mode
-  placeholder: string
-  textarea: TextareaBindings
-  saveText: boolean
-  onSaveTextChange: (checked: boolean) => void
-  onClear: () => void
+  mode: Mode;
+  placeholder: string;
+  textarea: TextareaBindings;
+  saveText: boolean;
+  onSaveTextChange: (checked: boolean) => void;
+  onClear: () => void;
 }
 
 export function Editor({
@@ -19,14 +19,14 @@ export function Editor({
   onSaveTextChange,
   onClear,
 }: Props) {
-  const [copied, setCopied] = useState(false)
-  const text = textarea.value
+  const [copied, setCopied] = useState(false);
+  const text = textarea.value;
 
   async function copy() {
     try {
-      await navigator.clipboard.writeText(text)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 1500)
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
     } catch {
       /* clipboard unavailable – ignore */
     }
@@ -58,5 +58,5 @@ export function Editor({
         </button>
       </div>
     </section>
-  )
+  );
 }

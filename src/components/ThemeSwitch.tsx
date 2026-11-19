@@ -1,8 +1,8 @@
-import { THEMES, type Theme } from '../config'
+import { THEMES, type Theme } from '../config';
 
 interface Props {
-  theme: Theme
-  onChange: (theme: Theme) => void
+  theme: Theme;
+  onChange: (theme: Theme) => void;
 }
 
 export function ThemeSwitch({ theme, onChange }: Props) {
@@ -14,5 +14,5 @@ export function ThemeSwitch({ theme, onChange }: Props) {
         </button>
       ))}
     </div>
-  )
+  );
 }
