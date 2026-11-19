@@ -23,6 +23,7 @@ export interface TextareaBindings {
 export function useLiveInput(text: string, setText: (text: string) => void, mode: Mode) {
   const areaRef = useRef<HTMLTextAreaElement>(null);
   const pendingRef = useRef(''); // Latin letters at the end that may still combine
+  const pendingCaretRef = useRef(-1); // caret position right after those pending letters
   const caretRef = useRef<number | null>(null);
   const [lastLetter, setLastLetter] = useState<string | null>(null); // last Cyrillic letter typed
 
@@ -53,14 +54,16 @@ export function useLiveInput(text: string, setText: (text: string) => void, mode
     const removed = oldHead.slice(p);
     const inserted = newHead.slice(p);
 
-    // Letters can only combine when we append at the very end without replacing anything.
-    const appending = rest === '' && removed === '' && p === text.length;
+    // Letters can only combine when we type right after the pending letters (at the caret,
+    // wherever that is in the text) without replacing anything.
+    const appending = removed === '' && p === oldHead.length && p === pendingCaretRef.current;
     let state = { text: newHead.slice(0, p), pending: appending ? pendingRef.current : '' };
     for (const ch of inserted) {
       state = typeChar(state, ch, mode);
     }
 
-    pendingRef.current = rest === '' ? state.pending : '';
+    pendingRef.current = state.pending;
+    pendingCaretRef.current = state.text.length;
     caretRef.current = state.text.length;
     setLastLetter(inserted ? state.text.slice(-1).toLowerCase() : null);
     setText(state.text + rest);
@@ -69,7 +72,7 @@ export function useLiveInput(text: string, setText: (text: string) => void, mode
   // Moving the caret (or selecting) ends any half-typed combination.
   function onSelect(e: SyntheticEvent<HTMLTextAreaElement>) {
     const t = e.currentTarget;
-    if (t.selectionStart !== t.value.length || t.selectionStart !== t.selectionEnd) {
+    if (t.selectionStart !== pendingCaretRef.current || t.selectionStart !== t.selectionEnd) {
       pendingRef.current = '';
     }
   }
@@ -83,6 +86,7 @@ export function useLiveInput(text: string, setText: (text: string) => void, mode
     /** Forget half-typed letters, e.g. after switching language or clearing. */
     resetPending: () => {
       pendingRef.current = '';
+      pendingCaretRef.current = -1;
       setLastLetter(null);
     },
     focus: () => areaRef.current?.focus(),
