@@ -14,8 +14,14 @@ const firebaseConfig = {
   measurementId: "G-VVR7NZGTEL"
 };
 
-/** False until the config above is filled in; the consent banner then stays hidden. */
-export const analyticsAvailable = Boolean(firebaseConfig.appId && firebaseConfig.measurementId)
+// Only the live site reports to this property, so local dev, clones and forks never do.
+// (A fork that wants its own analytics: replace the config above and these hosts.)
+const ANALYTICS_HOSTS = ['getklaveo.web.app', 'getklaveo.firebaseapp.com']
+
+/** False off the live site or without a config; the consent banner then stays hidden. */
+export const analyticsAvailable =
+  ANALYTICS_HOSTS.includes(location.hostname) &&
+  Boolean(firebaseConfig.appId && firebaseConfig.measurementId)
 
 type Started = { analytics: Analytics; sdk: typeof import('firebase/analytics') }
 let started: Promise<Started | null> | null = null
