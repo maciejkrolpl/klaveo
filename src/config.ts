@@ -10,8 +10,8 @@ export const THEMES: { id: Theme; label: string }[] = [
 ];
 
 export const MODES: { id: Mode; label: string; placeholder: string }[] = [
-  { id: 'be', label: 'Беларуская', placeholder: 'Pryvitanne, svet!' },
-  { id: 'uk', label: 'Українська', placeholder: 'Pryvit, svite!' },
+  { id: 'be', label: 'Беларуская', placeholder: "Zhyve Belarus'" },
+  { id: 'uk', label: 'Українська', placeholder: 'Slava Ukrajini' },
   { id: 'latin', label: 'Latin', placeholder: 'Type here…' },
 ];
 
