@@ -1,4 +1,4 @@
-# Клава
+# Klaveo
 
 A simple one-page app that turns Latin letters into **Belarusian** or **Ukrainian** Cyrillic as you
 type.

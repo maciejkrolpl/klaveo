@@ -1,10 +1,10 @@
 // Everything this app stores lives here, in this browser's localStorage only.
 // The typed text is stored only while the "Save text on reload" box is ticked.
 // (index.html also reads THEME_KEY before first paint – keep the two in sync.)
-export const THEME_KEY = 'klava.theme'
-export const MODE_KEY = 'klava.mode'
-export const SAVE_TEXT_KEY = 'klava.saveText'
-export const TEXT_KEY = 'klava.text'
+export const THEME_KEY = 'klaveo.theme'
+export const MODE_KEY = 'klaveo.mode'
+export const SAVE_TEXT_KEY = 'klaveo.saveText'
+export const TEXT_KEY = 'klaveo.text'
 
 /** Read a stored string; fall back if it is missing, not allowed, or storage is blocked. */
 export function load<T extends string>(key: string, allowed: readonly T[], fallback: T): T {

@@ -1,8 +1,8 @@
-# Клава (klava)
+# Klaveo (klaveo)
 
 One-page web app: the user types Latin letters and they turn into Belarusian or Ukrainian Cyrillic
 live in a single textarea. A third "Latin" mode does no conversion. Deployed on Netlify
-(https://klava-app.netlify.app/), repo on GitHub (`maciejkrolpl/klava`, branch `main`).
+(https://klaveo-app.netlify.app/), repo on GitHub (`maciejkrolpl/klaveo`, branch `main`).
 
 ## Scope and rules
 - **Desktop only.** Mobile layout and phone keyboards are out of scope; don't spend effort on them.
@@ -23,7 +23,7 @@ live in a single textarea. A third "Latin" mode does no conversion. Deployed on 
   these tables (multi-letter outputs like дз, дж, йо are hidden from it).
 - `src/hooks/useLiveInput.ts` – live conversion in the textarea (caret and pending-letter handling).
   Fragile: after touching it, check typing, mid-text edits, paste and backspace in a browser.
-- `src/storage.ts` – localStorage keys. `index.html` also reads `klava.theme` before first paint;
+- `src/storage.ts` – localStorage keys. `index.html` also reads `klaveo.theme` before first paint;
   keep the two in sync.
 - `src/components/`, `src/hooks/`, `src/config.ts` – UI pieces, state hooks, tabs and theme lists.
 - `public/` – favicon, `og-image.png` (link preview), `robots.txt`.

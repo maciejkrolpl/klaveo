@@ -34,7 +34,7 @@ export default function App() {
       <ThemeSwitch theme={theme} onChange={setTheme} />
 
       <header>
-        <h1>Клава</h1>
+        <h1>Klaveo</h1>
         <p>Type in Latin letters – they turn into Cyrillic as you type.</p>
       </header>
 
